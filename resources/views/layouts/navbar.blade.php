@@ -1,6 +1,6 @@
-<nav class="w-full bg-gray-900 border-gray-700 fixed z-[5] shadow-md top-0">
+<nav class="w-full bg-gray-900 border-gray-700 fixed z-20 shadow-md top-0">
     <div class="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-4">
-        <a href="#" class="flex items-center space-x-3 rtl:space-x-reverse">
+        <a href="/" class="flex items-center space-x-3 rtl:space-x-reverse">
             <img src="/img/logo-pplg.png" class="h-8" alt="PPLG Logo" />
             <span class="self-center text-2xl font-semibold whitespace-nowrap text-white">PPLG</span>
         </a>
@@ -29,6 +29,10 @@
                 <li>
                     <a href="/news"
                         class="block py-2 px-3 rounded md:border-0 md:p-0 text-white md:hover:text-blue-500 hover:bg-gray-700 hover:text-white md:hover:bg-transparent">Berita</a>
+                </li>
+                <li>
+                    <a href="/articles"
+                        class="block py-2 px-3 rounded md:border-0 md:p-0 text-white md:hover:text-blue-500 hover:bg-gray-700 hover:text-white md:hover:bg-transparent">Artikel</a>
                 </li>
                 <li>
                     <button id="dropdownNavbarLink" data-dropdown-toggle="dropdownNavbar"
