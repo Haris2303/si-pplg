@@ -18,6 +18,10 @@ Route::get('/articles', function () {
     return view('articles');
 })->name('articles');
 
+Route::get('/show', function () {
+    return view('show');
+});
+
 Route::get('/background', function () {
     return view('background');
 })->name('background');
