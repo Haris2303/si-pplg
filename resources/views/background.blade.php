@@ -22,7 +22,7 @@
 
                 {{-- Main Image --}}
                 <div class="relative rounded-2xl overflow-hidden shadow-lg border border-gray-100">
-                    <img src="https://source.unsplash.com/random/800x600?computer,code" alt="Ilustrasi PPLG"
+                    <img src="https://picsum.photos/1200/600?computer,code" alt="Ilustrasi PPLG"
                         class="w-full h-full object-cover transform group-hover:scale-105 transition duration-500">
 
                     {{-- Floating Badge (Optional) --}}

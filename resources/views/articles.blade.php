@@ -55,7 +55,7 @@
             <div class="absolute bottom-0 left-0 p-8 md:p-12 w-full md:w-2/3">
                 <span
                     class="inline-block px-3 py-1 mb-4 text-xs font-bold tracking-wider text-white uppercase bg-sky-600 rounded-full">
-                    Trending Topic
+                    Fresh Topic
                 </span>
                 <h3
                     class="text-3xl md:text-4xl font-bold text-white mb-4 leading-tight group-hover:text-sky-300 transition">

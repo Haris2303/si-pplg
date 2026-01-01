@@ -6,9 +6,9 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('/gallery', function () {
-    return view('gallery');
-})->name('gallery');
+Route::get('/galleries', function () {
+    return view('galleries');
+})->name('galleries');
 
 Route::get('/news', function () {
     return view('news');

@@ -23,7 +23,7 @@
                         aria-current="page">Home</a>
                 </li>
                 <li>
-                    <a href="/gallery"
+                    <a href="/galleries"
                         class="block py-2 px-3 rounded md:border-0 md:p-0 text-white md:hover:text-blue-500 hover:bg-gray-700 hover:text-white md:hover:bg-transparent">Galeri</a>
                 </li>
                 <li>
