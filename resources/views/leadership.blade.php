@@ -15,8 +15,12 @@
                 class="bg-white p-2 md:p-4 rounded-3xl shadow-xl border border-gray-100 hover:shadow-2xl transition-shadow duration-300">
 
                 {{-- Gambar --}}
-                <img src="/assets/slid3.JPG" alt="Struktur Organisasi PPLG"
-                    class="w-full h-auto rounded-2xl object-contain bg-gray-50">
+                @if ($profile->structure_image)
+                    <img src="{{ Storage::url($profile->structure_image) }}" alt="Struktur Organisasi PPLG"
+                        class="w-full h-auto rounded-2xl object-contain bg-gray-50">
+                @else
+                    <p class="text-gray-500 text-center">Gambar struktur belum diupload:(</p>
+                @endif
 
             </div>
 

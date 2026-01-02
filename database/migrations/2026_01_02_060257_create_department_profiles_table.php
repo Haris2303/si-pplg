@@ -19,11 +19,11 @@ return new class extends Migration
             $table->string('subtitle')->nullable();
             $table->string('image')->nullable();
             $table->string('badge_text')->nullable();
-            $table->string('content');
+            $table->longText('content');
             $table->json('features')->nullable();
             // vision & mision
             $table->string('vision');
-            $table->string('mision');
+            $table->json('mision');
             // structure
             $table->string('structure_image')->nullable();
             // contact

@@ -33,8 +33,7 @@
 
                 {{-- ISI VISI (Ganti text ini) --}}
                 <p class="text-2xl md:text-3xl font-serif font-medium leading-relaxed">
-                    "Menjadi jurusan unggulan yang menghasilkan lulusan kompeten, kreatif, dan berkarakter di bidang
-                    teknologi perangkat lunak pada tahun 2030."
+                    {{ $profile->vision }}
                 </p>
             </div>
 
@@ -47,64 +46,21 @@
 
                 <ul class="space-y-6">
 
-                    {{-- Item Misi 1 --}}
-                    <li class="flex items-start gap-4 group">
-                        <div
-                            class="flex-shrink-0 w-8 h-8 rounded-full bg-sky-100 text-sky-600 flex items-center justify-center group-hover:bg-sky-600 group-hover:text-white transition-colors duration-300">
-                            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                    d="M5 13l4 4L19 7"></path>
-                            </svg>
-                        </div>
-                        <p class="text-gray-600 leading-relaxed">
-                            Menyelenggarakan pembelajaran berbasis industri dengan kurikulum yang relevan dengan
-                            perkembangan teknologi terkini.
-                        </p>
-                    </li>
+                    @foreach ($profile->mision ?? [] as $item)
+                        <li class="flex items-start gap-4 group">
+                            <div
+                                class="flex-shrink-0 w-8 h-8 rounded-full bg-sky-100 text-sky-600 flex items-center justify-center group-hover:bg-sky-600 group-hover:text-white transition-colors duration-300">
+                                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                        d="M5 13l4 4L19 7"></path>
+                                </svg>
+                            </div>
+                            <p class="text-gray-600 leading-relaxed">
+                                {{ $item['mision'] }}
+                            </p>
+                        </li>
+                    @endforeach
 
-                    {{-- Item Misi 2 --}}
-                    <li class="flex items-start gap-4 group">
-                        <div
-                            class="flex-shrink-0 w-8 h-8 rounded-full bg-sky-100 text-sky-600 flex items-center justify-center group-hover:bg-sky-600 group-hover:text-white transition-colors duration-300">
-                            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                    d="M5 13l4 4L19 7"></path>
-                            </svg>
-                        </div>
-                        <p class="text-gray-600 leading-relaxed">
-                            Membangun kerjasama strategis dengan Dunia Usaha dan Dunia Industri (DUDI) untuk penyaluran
-                            lulusan.
-                        </p>
-                    </li>
-
-                    {{-- Item Misi 3 --}}
-                    <li class="flex items-start gap-4 group">
-                        <div
-                            class="flex-shrink-0 w-8 h-8 rounded-full bg-sky-100 text-sky-600 flex items-center justify-center group-hover:bg-sky-600 group-hover:text-white transition-colors duration-300">
-                            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                    d="M5 13l4 4L19 7"></path>
-                            </svg>
-                        </div>
-                        <p class="text-gray-600 leading-relaxed">
-                            Mengembangkan minat dan bakat siswa dalam rekayasa perangkat lunak melalui kegiatan praktik
-                            dan kompetisi.
-                        </p>
-                    </li>
-
-                    {{-- Item Misi 4 --}}
-                    <li class="flex items-start gap-4 group">
-                        <div
-                            class="flex-shrink-0 w-8 h-8 rounded-full bg-sky-100 text-sky-600 flex items-center justify-center group-hover:bg-sky-600 group-hover:text-white transition-colors duration-300">
-                            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                    d="M5 13l4 4L19 7"></path>
-                            </svg>
-                        </div>
-                        <p class="text-gray-600 leading-relaxed">
-                            Menanamkan nilai-nilai karakter, etika profesi, dan jiwa kewirausahaan (technopreneur).
-                        </p>
-                    </li>
 
                 </ul>
             </div>
