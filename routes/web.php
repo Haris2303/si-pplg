@@ -3,6 +3,7 @@
 use App\Http\Controllers\ArticleController;
 use App\Http\Controllers\GalleryController;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\TeacherController;
 use App\Models\DepartmentProfile;
 use Illuminate\Support\Facades\Route;
 
@@ -28,9 +29,7 @@ Route::controller(ProfileController::class)->group(function () {
     Route::get('/contact', 'contact')->name('profile.contact');
 });
 
-Route::get('/teachers', function () {
-    return view('teachers');
-})->name('teachers');
+Route::get('/teachers', [TeacherController::class, 'index'])->name('teachers');
 
 Route::get('/subjects', function () {
     return view('subjects');

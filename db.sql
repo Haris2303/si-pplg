@@ -9,3 +9,5 @@ USE pplg
 DESC users
 
 DESC teachers
+
+select * from teachers
