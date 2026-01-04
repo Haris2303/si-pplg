@@ -3,6 +3,7 @@
 use App\Http\Controllers\ArticleController;
 use App\Http\Controllers\GalleryController;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\SubjectController;
 use App\Http\Controllers\TeacherController;
 use App\Models\DepartmentProfile;
 use Illuminate\Support\Facades\Route;
@@ -31,6 +32,4 @@ Route::controller(ProfileController::class)->group(function () {
 
 Route::get('/teachers', [TeacherController::class, 'index'])->name('teachers');
 
-Route::get('/subjects', function () {
-    return view('subjects');
-})->name('subjects');
+Route::get('/subjects', [SubjectController::class, 'index'])->name('subjects');
