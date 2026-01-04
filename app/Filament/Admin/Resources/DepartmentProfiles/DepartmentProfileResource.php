@@ -47,4 +47,10 @@ class DepartmentProfileResource extends Resource
             'edit' => EditDepartmentProfile::route('/{record}/edit'),
         ];
     }
+
+    public static function canViewAny(): bool
+    {
+        // Logika: Cuma boleh dilihat kalau role-nya ADMIN
+        return auth()->user()->role === 'admin';
+    }
 }

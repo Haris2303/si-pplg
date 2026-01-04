@@ -47,4 +47,10 @@ class SubjectResource extends Resource
             'edit' => EditSubject::route('/{record}/edit'),
         ];
     }
+
+    public static function canViewAny(): bool
+    {
+        // Logika: Cuma boleh dilihat kalau role-nya ADMIN
+        return auth()->user()->role === 'admin';
+    }
 }
