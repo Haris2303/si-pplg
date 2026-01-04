@@ -4,10 +4,17 @@
 
         {{-- Header Section --}}
         <div class="pt-24 pb-8">
-            @if ($search)
+            @if (isset($currentCategory))
+                <span class="text-sky-600 font-bold tracking-wider uppercase text-sm">Kategori</span>
+                <h2 class="text-4xl font-bold text-gray-800 tracking-tight mt-2">{{ $currentCategory->name }}</h2>
+                <p class="mt-4 text-gray-500">Menampilkan semua artikel dalam kategori ini.</p>
+                <a href="{{ route('articles.article') }}" class="text-sky-600 hover:underline text-sm mt-2 inline-block">←
+                    Kembali ke semua artikel</a>
+            @elseif ($search)
                 <h2 class="text-4xl font-bold text-gray-800 tracking-tight">Pencarian: "{{ $search }}"</h2>
                 <p class="mt-4 text-gray-500">Menampilkan hasil pencarian untuk kata kunci tersebut.</p>
-                <a href="{{ route('articles.article') }}" class="text-sky-600 hover:underline text-sm mt-2 inline-block">←
+                <a href="{{ route('articles.article') }}"
+                    class="text-sky-600 hover:underline text-sm mt-2 inline-block">←
                     Kembali ke semua artikel</a>
             @else
                 <h2 class="text-4xl font-bold text-gray-800 tracking-tight">Artikel & Tutorial</h2>
@@ -17,7 +24,7 @@
         </div>
 
         {{-- FEATURED POST (Artikel Utama Besar) --}}
-        @if ($featured && !$search)
+        @if ($featured && !$search && !isset($currentCategory))
             <div class="mb-16 relative rounded-3xl overflow-hidden shadow-2xl group cursor-pointer h-[400px]">
                 <a href="{{ route('articles.show', $featured->slug) }}" class="absolute inset-0 z-10"></a>
                 <img src="{{ Storage::url($featured->thumbnail) }}" alt="{{ $featured->title }}"
@@ -81,7 +88,7 @@
                             </div>
                             <h3
                                 class="text-xl font-bold text-gray-800 mb-3 group-hover:text-sky-600 transition leading-snug">
-                                <a href="#">{{ $article->title }}</a>
+                                <a href="{{ route('articles.show', $article->slug) }}">{{ $article->title }}</a>
                             </h3>
                             <p class="text-gray-600 text-sm leading-relaxed line-clamp-2 mb-4">
                                 {{ Str::limit(strip_tags($article->content), 120) }}
@@ -98,8 +105,18 @@
                     </article>
                     <hr class="border-gray-100">
                 @empty
-                    <div class="text-center py-10">
-                        <p class="text-gray-500">Belum ada artikel lainnya.</p>
+                    <div class="text-center py-16 bg-gray-50 rounded-2xl border border-dashed border-gray-200">
+                        <h3 class="text-lg font-medium text-gray-900">Tidak ada artikel ditemukan</h3>
+                        {{-- Tombol reset berbeda tergantung konteks --}}
+                        @if (isset($currentCategory))
+                            <p class="text-gray-500 mt-1">Belum ada artikel di kategori
+                                <strong>{{ $currentCategory->name }}</strong>.
+                            </p>
+                        @elseif($search)
+                            <p class="text-gray-500 mt-1">Coba gunakan kata kunci yang berbeda.</p>
+                        @endif
+                        <a href="{{ route('articles.article') }}"
+                            class="text-sky-600 hover:underline text-sm mt-4 inline-block">Lihat Semua Artikel</a>
                     </div>
                 @endforelse
 
@@ -145,9 +162,19 @@
                         <h4 class="font-bold text-gray-800 mb-4">Kategori</h4>
                         <div class="flex flex-wrap gap-2">
                             @foreach ($categories as $cat)
-                                <a href="#"
-                                    class="px-3 py-1 bg-sky-50 text-sky-600 text-sm font-medium rounded-lg hover:bg-sky-600 hover:text-white transition">
+                                @php
+                                    $isActive = isset($currentCategory) && $currentCategory->id === $cat->id;
+                                @endphp
+                                <a href="{{ route('articles.category', $cat->slug) }}"
+                                    class="px-3 py-1 bg-sky-50 text-sky-600 text-sm font-medium rounded-lg hover:bg-sky-600 hover:text-white transition
+                                    {{ $isActive ? 'bg-sky-600 text-white shadow-md' : 'bg-sky-50 text-sky-600 hover:bg-sky-600 hover:text-white' }}">
                                     {{ $cat->name }}
+                                    <span
+                                        class="text-xs ml-1
+                                    {{-- Warna angka juga menyesuaikan --}}
+                                    {{ $isActive ? 'text-sky-200' : 'text-sky-400 group-hover:text-white' }}">
+                                        ({{ $cat->articles_count }})
+                                    </span>
                                 </a>
                             @endforeach
                         </div>

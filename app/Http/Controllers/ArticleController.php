@@ -62,27 +62,47 @@ class ArticleController extends Controller
             $articles->appends(['search' => $search]);
         }
 
-        // $featured = Article::with(['category', 'user'])
-        //     ->where('is_published', true)
-        //     ->whereHas('category', function (Builder $query) {
-        //         $query->where('slug', '!=', 'berita');
-        //     })
-        //     ->latest()
-        //     ->first();
-
-        // $articles = Article::with(['category', 'user'])
-        //     ->where('is_published', true)
-        //     ->whereHas('category', function (Builder $query) {
-        //         $query->where('slug', '!=', 'berita');
-        //     })
-        //     ->when($featured, function ($query) use ($featured) {
-        //         return $query->where('slug', '!=', $featured->slug);
-        //     })
-        //     ->latest()
-        //     ->paginate(6);
-
-        $categories = Category::withCount('articles')->get();
+        $categories = Category::query()
+            ->where('slug', '!=', 'berita')
+            ->whereHas('articles', function ($query) {
+                $query->where('is_published', true);
+            })
+            ->withCount(['articles' => function ($query) {
+                $query->where('is_published', true);
+            }])
+            ->get();
 
         return view('articles.articles', compact('featured', 'articles', 'categories', 'search'));
+    }
+
+    public function category($slug)
+    {
+        $currectCategory = Category::where('slug', $slug)
+            ->where('slug', '!=', 'berita')
+            ->firstOrFail();
+
+        $articles = Article::with(['category', 'user'])
+            ->where('is_published', true)
+            ->where('category_id', $currectCategory->id)
+            ->latest()
+            ->paginate(6);
+
+        $categories = Category::query()
+            ->where('slug', '!=', 'berita')
+            ->whereHas('articles', function ($query) {
+                $query->where('is_published', true);
+            })
+            ->withCount(['articles' => function ($query) {
+                $query->where('is_published', true);
+            }])
+            ->get();
+
+        return view('articles.articles', [
+            'featured' => null,
+            'articles' => $articles,
+            'categories' => $categories,
+            'currentCategory' => $currectCategory,
+            'search' => null,
+        ]);
     }
 }

@@ -16,6 +16,7 @@ Route::get('/galleries', function () {
 Route::get('/news', [ArticleController::class, 'news'])->name('articles.news');
 Route::get('/show/{slug}', [ArticleController::class, 'show'])->name('articles.show');
 Route::get('/articles', [ArticleController::class, 'article'])->name('articles.article');
+Route::get('/article/category/{slug}', [ArticleController::class, 'category'])->name('articles.category');
 
 Route::get('/show', function () {
     return view('show');
