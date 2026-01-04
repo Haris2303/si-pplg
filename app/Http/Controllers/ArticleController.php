@@ -31,29 +31,58 @@ class ArticleController extends Controller
         return view('articles.show', compact('article'));
     }
 
-    public function article()
+    public function article(Request $request)
     {
-        $featured = Article::with(['category', 'user'])
-            ->where('is_published', true)
-            ->whereHas('category', function (Builder $query) {
-                $query->where('slug', '!=', 'berita');
-            })
-            ->latest()
-            ->first();
+        $search = $request->input('search');
 
-        $articles = Article::with(['category', 'user'])
+        $baseQuery = Article::with(['category', 'user'])
             ->where('is_published', true)
             ->whereHas('category', function (Builder $query) {
                 $query->where('slug', '!=', 'berita');
-            })
-            ->when($featured, function ($query) use ($featured) {
-                return $query->where('slug', '!=', $featured->slug);
-            })
-            ->latest()
-            ->paginate(6);
+            });
+
+        $featured = null;
+
+        if ($search) {
+            $baseQuery->where(function ($query) use ($search) {
+                $query->where('title', 'like', '%' . $search . '%')
+                    ->orWhere('content', 'like', '%' . $search . '%');
+            });
+        } else {
+            $featured = (clone $baseQuery)->latest()->first();
+
+            if ($featured) {
+                $baseQuery->where('slug', '!=', $featured->slug);
+            }
+        }
+
+        $articles = $baseQuery->latest()->paginate(6);
+
+        if ($search) {
+            $articles->appends(['search' => $search]);
+        }
+
+        // $featured = Article::with(['category', 'user'])
+        //     ->where('is_published', true)
+        //     ->whereHas('category', function (Builder $query) {
+        //         $query->where('slug', '!=', 'berita');
+        //     })
+        //     ->latest()
+        //     ->first();
+
+        // $articles = Article::with(['category', 'user'])
+        //     ->where('is_published', true)
+        //     ->whereHas('category', function (Builder $query) {
+        //         $query->where('slug', '!=', 'berita');
+        //     })
+        //     ->when($featured, function ($query) use ($featured) {
+        //         return $query->where('slug', '!=', $featured->slug);
+        //     })
+        //     ->latest()
+        //     ->paginate(6);
 
         $categories = Category::withCount('articles')->get();
 
-        return view('articles.articles', compact('featured', 'articles', 'categories'));
+        return view('articles.articles', compact('featured', 'articles', 'categories', 'search'));
     }
 }
