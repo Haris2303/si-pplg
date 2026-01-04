@@ -12,13 +12,12 @@
         <div class="columns-1 sm:columns-2 lg:columns-3 gap-4 space-y-4">
 
             {{-- Loop Dummy Data --}}
-            @foreach (range(1, 9) as $item)
+            @foreach ($galleries as $item)
                 <div class="break-inside-avoid relative group rounded-2xl overflow-hidden cursor-pointer">
 
                     {{-- FIX: Menggunakan Picsum Photos --}}
                     {{-- Format: https://picsum.photos/lebar/tinggi?random=angka --}}
-                    <img src="https://picsum.photos/600/{{ rand(400, 800) }}?random={{ $item }}"
-                        alt="Kegiatan PPLG"
+                    <img src="{{ Storage::url($item->image) }}" alt="Kegiatan PPLG"
                         class="w-full h-auto object-cover transform group-hover:scale-110 transition duration-700">
 
                     {{-- Overlay Gelap saat Hover --}}
@@ -27,8 +26,10 @@
 
                         {{-- Caption muncul dari bawah --}}
                         <div class="p-6 translate-y-4 group-hover:translate-y-0 transition-transform duration-300">
-                            <span class="text-sky-300 text-xs font-bold uppercase tracking-wider">Kegiatan</span>
-                            <h4 class="text-white font-bold text-lg mt-1">Dokumentasi Kegiatan {{ $item }}</h4>
+                            <span
+                                class="text-sky-300 text-xs font-bold uppercase tracking-wider">{{ $item->created_at->format('d M Y') }}</span>
+                            <h4 class="text-white font-bold text-lg mt-1">
+                                {{ $item->caption ?? 'Diunggah oleh ' . $item->user->name }}</h4>
                         </div>
                     </div>
 

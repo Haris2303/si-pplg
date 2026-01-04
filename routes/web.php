@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\ArticleController;
+use App\Http\Controllers\GalleryController;
 use App\Http\Controllers\ProfileController;
 use App\Models\DepartmentProfile;
 use Illuminate\Support\Facades\Route;
@@ -9,9 +10,7 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('/galleries', function () {
-    return view('galleries');
-})->name('galleries');
+Route::get('/galleries', [GalleryController::class, 'index'])->name('galleries');
 
 Route::get('/news', [ArticleController::class, 'news'])->name('articles.news');
 Route::get('/show/{slug}', [ArticleController::class, 'show'])->name('articles.show');
@@ -29,18 +28,6 @@ Route::controller(ProfileController::class)->group(function () {
     Route::get('/contact', 'contact')->name('profile.contact');
 });
 
-// Route::get('/background', function () {
-//     return view('background');
-// })->name('background');
-
-// Route::get('/vision-mision', function () {
-//     return view('vision-mision');
-// })->name('vision-mision');
-
-// Route::get('/leadership', function () {
-//     return view('leadership');
-// })->name('leadership');
-
 Route::get('/teachers', function () {
     return view('teachers');
 })->name('teachers');
@@ -48,7 +35,3 @@ Route::get('/teachers', function () {
 Route::get('/subjects', function () {
     return view('subjects');
 })->name('subjects');
-
-// Route::get('/contact', function () {
-//     return view('contact');
-// })->name('contact');
