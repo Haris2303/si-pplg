@@ -20,6 +20,83 @@ class DepartmentProfileForm
         return $schema
             ->components([
                 Tabs::make('Data Jurusan')->tabs([
+                    // --- TAB BARU: KONTEN BERANDA (HOMEPAGE) ---
+                    Tab::make('Konten Beranda')
+                        ->icon('heroicon-m-home') // Ikon Rumah
+                        ->schema([
+                            // 1. BANNER SLIDER
+                            Section::make('Banner Slider Utama')
+                                ->schema([
+                                    Repeater::make('hero_slides')
+                                        ->label('Slide Gambar')
+                                        ->schema([
+                                            FileUpload::make('image')
+                                                ->label('Gambar Banner')
+                                                ->image()
+                                                ->directory('banners')
+                                                ->required(),
+                                        ])
+                                        ->grid(3)
+                                        ->columnSpanFull(),
+                                ]),
+
+                            // 2. MOTO JURUSAN
+                            Section::make('Moto Jurusan')
+                                ->schema([
+                                    Repeater::make('motos')
+                                        ->label('Kartu Moto')
+                                        ->schema([
+                                            FileUpload::make('image')
+                                                ->label('Background')
+                                                ->image()
+                                                ->directory('motos')
+                                                ->required(),
+                                            TextInput::make('title')
+                                                ->label('Judul')
+                                                ->required(),
+                                            Textarea::make('description')
+                                                ->label('Deskripsi')
+                                                ->rows(2)
+                                                ->required(),
+                                        ])
+                                        ->grid(3)
+                                        ->maxItems(3) // Batasi 3 biar rapi
+                                        ->columnSpanFull(),
+                                ]),
+
+                            // 3. SAMBUTAN & KOMPETENSI
+                            Section::make('Informasi Website')
+                                ->schema([
+                                    TextInput::make('welcome_title')
+                                        ->label('Judul Sambutan')
+                                        ->default('Website Pengembangan Perangkat Lunak & GIM'),
+
+                                    Textarea::make('welcome_description')
+                                        ->label('Deskripsi Sambutan')
+                                        ->rows(3)
+                                        ->columnSpanFull(),
+
+                                    FileUpload::make('about_image')
+                                        ->label('Foto Kaprodi / Kajur')
+                                        ->image()
+                                        ->directory('profiles'),
+
+                                    RichEditor::make('about_description')
+                                        ->label('Deskripsi Tentang Kompetensi')
+                                        ->columnSpanFull(),
+                                ]),
+
+                            // 4. VIDEO
+                            Section::make('Video Profil')
+                                ->schema([
+                                    TextInput::make('video_url')
+                                        ->label('Link Embed YouTube')
+                                        ->prefixIcon('heroicon-m-video-camera')
+                                        ->placeholder('https://www.youtube.com/embed/xxxxx')
+                                        ->helperText('Pastikan menggunakan link EMBED, bukan link tonton biasa.'),
+                                ]),
+                        ]),
+
                     Tab::make('Profil & Sejarah')
                         ->icon('heroicon-m-building-library')
                         ->schema([

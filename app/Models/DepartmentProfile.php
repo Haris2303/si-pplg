@@ -13,7 +13,9 @@ class DepartmentProfile extends Model
     protected $casts = [
         'features' => 'array',
         'mision' => 'array',
-        'social_media' => 'array'
+        'social_media' => 'array',
+        'hero_slides' => 'array',
+        'motos' => 'array',
     ];
 
     public function user()

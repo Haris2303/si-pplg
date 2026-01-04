@@ -11,3 +11,5 @@ DESC users
 DESC teachers
 
 select * from teachers
+
+select * from articles
