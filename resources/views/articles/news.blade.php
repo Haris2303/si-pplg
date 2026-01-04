@@ -12,7 +12,7 @@
         <div class="flex flex-wrap justify-center gap-8">
 
             {{-- DATA DUMMY: Kita loop angka 1 sampai 6 untuk contoh --}}
-            @foreach ($articles as $article)
+            @forelse ($articles as $article)
                 <div
                     class="w-full sm:w-[45%] lg:w-[30%] group flex flex-col bg-white rounded-2xl shadow-sm border border-gray-100 hover:shadow-xl hover:-translate-y-1 transition-all duration-300 ease-in-out overflow-hidden">
 
@@ -53,41 +53,18 @@
                         </div>
                     </div>
                 </div>
-            @endforeach
+            @empty
+                {{-- TAMPILAN JIKA BELUM ADA BERITA --}}
+                <div class="text-center py-20 w-full">
+                    <p class="text-gray-500 text-lg">Belum ada berita yang diterbitkan.</p>
+                </div>
+            @endforelse
 
         </div>
 
-        {{-- PAGINATION DUMMY (TAMPILAN SAJA) --}}
-        {{-- Nanti kalau database sudah ada, hapus div ini dan ganti jadi {{ $berita->links() }} --}}
-        <div class="mt-16 flex justify-center">
-            <nav class="isolate inline-flex -space-x-px rounded-md shadow-sm" aria-label="Pagination">
-                <a href="#"
-                    class="relative inline-flex items-center rounded-l-md px-2 py-2 text-gray-400 ring-1 ring-inset ring-gray-300 hover:bg-gray-50 focus:z-20 focus:outline-offset-0">
-                    <span class="sr-only">Previous</span>
-                    <svg class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
-                        <path fill-rule="evenodd"
-                            d="M12.79 5.23a.75.75 0 01-.02 1.06L8.832 10l3.938 3.71a.75.75 0 11-1.04 1.08l-4.5-4.25a.75.75 0 010-1.08l4.5-4.25a.75.75 0 011.06.02z"
-                            clip-rule="evenodd" />
-                    </svg>
-                </a>
-
-                <a href="#" aria-current="page"
-                    class="relative z-10 inline-flex items-center bg-sky-600 px-4 py-2 text-sm font-semibold text-white focus:z-20 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-sky-600">1</a>
-                <a href="#"
-                    class="relative inline-flex items-center px-4 py-2 text-sm font-semibold text-gray-900 ring-1 ring-inset ring-gray-300 hover:bg-gray-50 focus:z-20 focus:outline-offset-0">2</a>
-                <a href="#"
-                    class="relative inline-flex items-center px-4 py-2 text-sm font-semibold text-gray-900 ring-1 ring-inset ring-gray-300 hover:bg-gray-50 focus:z-20 focus:outline-offset-0">3</a>
-
-                <a href="#"
-                    class="relative inline-flex items-center rounded-r-md px-2 py-2 text-gray-400 ring-1 ring-inset ring-gray-300 hover:bg-gray-50 focus:z-20 focus:outline-offset-0">
-                    <span class="sr-only">Next</span>
-                    <svg class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
-                        <path fill-rule="evenodd"
-                            d="M7.21 14.77a.75.75 0 01.02-1.06L11.168 10 7.23 6.29a.75.75 0 111.04-1.08l4.5 4.25a.75.75 0 010 1.08l-4.5 4.25a.75.75 0 01-1.06-.02z"
-                            clip-rule="evenodd" />
-                    </svg>
-                </a>
-            </nav>
+        {{-- PAGINATION OTOMATIS --}}
+        <div class="mt-16">
+            {{ $articles->links() }}
         </div>
 
     </div>

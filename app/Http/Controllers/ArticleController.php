@@ -72,6 +72,15 @@ class ArticleController extends Controller
             }])
             ->get();
 
+        if ($request->ajax()) {
+            $view = view('articles.partials.item', compact('articles'))->render();
+
+            return response()->json([
+                'html' => $view,
+                'nextPageUrl' => $articles->nextPageUrl()
+            ]);
+        }
+
         return view('articles.articles', compact('featured', 'articles', 'categories', 'search'));
     }
 

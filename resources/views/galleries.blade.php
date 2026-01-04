@@ -15,8 +15,6 @@
             @foreach ($galleries as $item)
                 <div class="break-inside-avoid relative group rounded-2xl overflow-hidden cursor-pointer">
 
-                    {{-- FIX: Menggunakan Picsum Photos --}}
-                    {{-- Format: https://picsum.photos/lebar/tinggi?random=angka --}}
                     <img src="{{ Storage::url($item->image) }}" alt="Kegiatan PPLG"
                         class="w-full h-auto object-cover transform group-hover:scale-110 transition duration-700">
 
