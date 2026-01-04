@@ -1,22 +1,22 @@
 <?php
 
-namespace App\Filament\Admin\Resources\Teachers;
+namespace App\Filament\Admin\Resources\Users;
 
-use App\Filament\Admin\Resources\Teachers\Pages\CreateTeacher;
-use App\Filament\Admin\Resources\Teachers\Pages\EditTeacher;
-use App\Filament\Admin\Resources\Teachers\Pages\ListTeachers;
-use App\Filament\Admin\Resources\Teachers\Schemas\TeacherForm;
-use App\Filament\Admin\Resources\Teachers\Tables\TeachersTable;
-use App\Models\Teacher;
+use App\Filament\Admin\Resources\Users\Pages\CreateUser;
+use App\Filament\Admin\Resources\Users\Pages\EditUser;
+use App\Filament\Admin\Resources\Users\Pages\ListUsers;
+use App\Filament\Admin\Resources\Users\Schemas\UserForm;
+use App\Filament\Admin\Resources\Users\Tables\UsersTable;
+use App\Models\User;
 use BackedEnum;
 use Filament\Resources\Resource;
 use Filament\Schemas\Schema;
 use Filament\Support\Icons\Heroicon;
 use Filament\Tables\Table;
 
-class TeacherResource extends Resource
+class UserResource extends Resource
 {
-    protected static ?string $model = Teacher::class;
+    protected static ?string $model = User::class;
 
     protected static string|BackedEnum|null $navigationIcon = Heroicon::OutlinedRectangleStack;
 
@@ -24,12 +24,12 @@ class TeacherResource extends Resource
 
     public static function form(Schema $schema): Schema
     {
-        return TeacherForm::configure($schema);
+        return UserForm::configure($schema);
     }
 
     public static function table(Table $table): Table
     {
-        return TeachersTable::configure($table);
+        return UsersTable::configure($table);
     }
 
     public static function getRelations(): array
@@ -42,9 +42,9 @@ class TeacherResource extends Resource
     public static function getPages(): array
     {
         return [
-            'index' => ListTeachers::route('/'),
-            'create' => CreateTeacher::route('/create'),
-            'edit' => EditTeacher::route('/{record}/edit'),
+            'index' => ListUsers::route('/'),
+            'create' => CreateUser::route('/create'),
+            'edit' => EditUser::route('/{record}/edit'),
         ];
     }
 

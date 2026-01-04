@@ -18,20 +18,20 @@
             <ul
                 class="flex flex-col font-medium p-4 md:p-0 mt-4 border rounded-lg md:space-x-8 rtl:space-x-reverse md:flex-row md:mt-0 md:border-0 md:bg-gray-900 border-gray-700">
                 <li>
-                    <a href="/"
+                    <a href="{{ route('home') }}"
                         class="block py-2 px-3 text-white rounded md:bg-transparent md:p-0 md:text-blue-500 bg-blue-600 md:dark:bg-transparent"
                         aria-current="page">Home</a>
                 </li>
                 <li>
-                    <a href="/galleries"
+                    <a href="{{ route('galleries') }}"
                         class="block py-2 px-3 rounded md:border-0 md:p-0 text-white md:hover:text-blue-500 hover:bg-gray-700 hover:text-white md:hover:bg-transparent">Galeri</a>
                 </li>
                 <li>
-                    <a href="/news"
+                    <a href="{{ route('articles.news') }}"
                         class="block py-2 px-3 rounded md:border-0 md:p-0 text-white md:hover:text-blue-500 hover:bg-gray-700 hover:text-white md:hover:bg-transparent">Berita</a>
                 </li>
                 <li>
-                    <a href="/articles"
+                    <a href="{{ route('articles.article') }}"
                         class="block py-2 px-3 rounded md:border-0 md:p-0 text-white md:hover:text-blue-500 hover:bg-gray-700 hover:text-white md:hover:bg-transparent">Artikel</a>
                 </li>
                 <li>
@@ -48,36 +48,31 @@
                         class="z-10 hidden font-normal divide-y rounded-lg shadow w-44 bg-gray-700 divide-gray-600">
                         <ul class="py-2 text-sm text-gray-700 dark:text-gray-400" aria-labelledby="dropdownLargeButton">
                             <li>
-                                <a href="/background"
+                                <a href="{{ route('profile.background') }}"
                                     class="block px-4 py-2 hover:bg-gray-600 hover:text-white text-gray-400">Latar
                                     Belakang</a>
                             </li>
                             <li>
-                                <a href="/vision-mision"
+                                <a href="{{ route('profile.vision-mision') }}"
                                     class="block px-4 py-2 hover:bg-gray-600 hover:text-white text-gray-400">Visi
                                     Misi</a>
                             </li>
                             <li>
-                                <a href="/leadership"
+                                <a href="{{ route('profile.leadership') }}"
                                     class="block px-4 py-2 hover:bg-gray-600 hover:text-white text-gray-400">Struktur
                                     Kepemimpinan</a>
                             </li>
                             <li>
-                                <a href="/teachers"
+                                <a href="{{ route('teachers') }}"
                                     class="block px-4 py-2 hover:bg-gray-600 hover:text-white text-gray-400">Daftar
                                     Guru</a>
                             </li>
                             <li>
-                                <a href="/subjects"
+                                <a href="{{ route('subjects') }}"
                                     class="block px-4 py-2 hover:bg-gray-600 hover:text-white text-gray-400">Mata
                                     Pelajaran</a>
                             </li>
                         </ul>
-                        <div class="py-1">
-                            <a href="/about-app"
-                                class="block px-4 py-2 text-sm text-gray-300 hover:text-white">Informasi
-                                Aplikasi</a>
-                        </div>
                     </div>
                 </li>
                 <li>
