@@ -12,20 +12,19 @@
         <div class="flex flex-wrap justify-center gap-8">
 
             {{-- DATA DUMMY: Kita loop angka 1 sampai 6 untuk contoh --}}
-            @foreach (range(1, 6) as $item)
+            @foreach ($articles as $article)
                 <div
                     class="w-full sm:w-[45%] lg:w-[30%] group flex flex-col bg-white rounded-2xl shadow-sm border border-gray-100 hover:shadow-xl hover:-translate-y-1 transition-all duration-300 ease-in-out overflow-hidden">
 
                     {{-- Image Placeholder --}}
                     <div class="relative overflow-hidden h-56 w-full bg-gray-200">
                         {{-- Ganti src dengan gambar asli nanti --}}
-                        <img src="https://picsum.photos/800/600?random={{ $item }}"
-                            alt="Dummy Image {{ $item }}"
+                        <img src="{{ Storage::url($article->thumbnail) }}" alt="{{ $article->title }}"
                             class="w-full h-full object-cover transform group-hover:scale-110 transition duration-500">
 
                         <div
                             class="absolute top-4 left-4 bg-white/90 backdrop-blur-sm px-3 py-1 rounded-lg text-xs font-bold text-sky-700 shadow-sm">
-                            {{ 10 + $item }} Des 2023
+                            {{ $article->created_at->format('d M Y') }}
                         </div>
                     </div>
 
@@ -33,17 +32,15 @@
                     <div class="flex flex-col flex-grow p-6">
                         <h3
                             class="text-xl font-bold text-gray-800 mb-3 group-hover:text-sky-600 transition-colors line-clamp-2">
-                            Berita PPLG Update #{{ $item }}: Kegiatan Workshop Laravel
+                            {{ $article->title }}
                         </h3>
 
                         <p class="text-gray-600 text-sm leading-relaxed line-clamp-3 mb-4 flex-grow">
-                            Ini adalah contoh deskripsi singkat untuk berita nomor {{ $item }}. Teks ini hanya
-                            placeholder untuk melihat bagaimana tampilan layout jika berisi teks panjang. Lorem ipsum
-                            dolor sit amet.
+                            {!! Str::limit(strip_tags($article->content), 100) !!}
                         </p>
 
                         <div class="pt-4 mt-auto border-t border-gray-100">
-                            <a href="#"
+                            <a href="{{ route('articles.show', $article->slug) }}"
                                 class="inline-flex items-center gap-2 text-sm font-semibold text-sky-600 hover:text-sky-800 transition-colors">
                                 Telusuri
                                 <svg xmlns="http://www.w3.org/2000/svg"

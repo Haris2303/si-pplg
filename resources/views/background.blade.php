@@ -42,17 +42,10 @@
             {{-- Bagian Teks --}}
             <div class="w-full md:w-1/2">
                 <article class="prose prose-sky lg:prose-lg text-gray-600 leading-relaxed text-justify">
-                    <p class="mb-6">
-                        <span class="text-4xl font-serif text-sky-800 float-left mr-2 mt-[-10px] opacity-80">L</span>
+                    <div class="mb-6 background-desc">
+                        {{-- <span class="text-4xl font-serif text-sky-800 float-left mr-2 mt-[-10px] opacity-80">L</span> --}}
                         {!! $profile->content !!}
-                    </p>
-                    <p class="mb-6">
-                        Velit cum atque nulla vel debitis. Quisquam minima aut a consequatur, ipsam assumenda porro eos
-                        ullam tempora provident,
-                        placeat perspiciatis eveniet quo. Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                        Aspernatur,
-                        voluptatum.
-                    </p>
+                    </div>
                 </article>
 
                 {{-- Feature Points (Poin Penting) --}}
