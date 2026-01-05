@@ -12,8 +12,11 @@ class EditDepartmentProfile extends EditRecord
 
     protected function getHeaderActions(): array
     {
-        return [
-            DeleteAction::make(),
-        ];
+        return [];
+    }
+
+    protected function getRedirectUrl(): ?string
+    {
+        return $this->getResource()::getUrl('edit', ['record' => $this->getRecord()]);
     }
 }
