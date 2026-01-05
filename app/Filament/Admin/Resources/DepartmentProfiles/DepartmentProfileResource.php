@@ -13,12 +13,16 @@ use Filament\Resources\Resource;
 use Filament\Schemas\Schema;
 use Filament\Support\Icons\Heroicon;
 use Filament\Tables\Table;
+use Illuminate\Database\Eloquent\Model;
+use UnitEnum;
 
 class DepartmentProfileResource extends Resource
 {
     protected static ?string $model = DepartmentProfile::class;
 
-    protected static string|BackedEnum|null $navigationIcon = Heroicon::OutlinedRectangleStack;
+    protected static string|BackedEnum|null $navigationIcon = Heroicon::BuildingLibrary;
+
+    protected static string|UnitEnum|null $navigationGroup = 'Publikasi';
 
     protected static ?string $recordTitleAttribute = 'id';
 
@@ -52,5 +56,20 @@ class DepartmentProfileResource extends Resource
     {
         // Logika: Cuma boleh dilihat kalau role-nya ADMIN
         return auth()->user()->role === 'admin';
+    }
+
+    public static function canCreate(): bool
+    {
+        return DepartmentProfile::count() === 0;
+    }
+
+    public static function canDelete(Model $record): bool
+    {
+        return false;
+    }
+
+    public static function getGloballySearchableAttributes(): array
+    {
+        return [];
     }
 }
